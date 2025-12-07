@@ -2,12 +2,12 @@
 // just exporing modules 
 
 // from data .js file
-const data = require('./data')
+const { data, dataTwo } = require('./data')
 
 // from module.js file
 const moudle = require('./module')
 
-console.log(data);
+console.log(data, dataTwo);
 
 console.log(moudle);
 

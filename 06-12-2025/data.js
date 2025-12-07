@@ -1,3 +1,5 @@
  const data = ["a","b","c","d"]
 
- module.exports = data
+ const dataTwo = "data two"
+
+ module.exports = {data,dataTwo}
