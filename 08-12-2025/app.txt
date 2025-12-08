@@ -1,0 +1,59 @@
+MohanAlright Mohan, let’s break streams and buffers down in a simple, friendly way — especially from a Node.js beginner’s perspective (which fits your backend practice perfectly).
+🟦 What is a Buffer in JavaScript (Node.js)?
+Think of a Buffer like a small storage box that temporarily holds raw binary data.
+💡 Why we need it?
+JavaScript normally works with text (strings), not raw bytes.
+But many things in backend are binary:
+files (images, videos, PDFs)
+network packets
+reading/writing to disk
+A Buffer lets Node.js handle this binary data efficiently.
+🧠 How it behaves:
+Fixed size (once created, can't grow)
+Stores bytes
+Very fast
+Used mostly internally by streams and file operations
+🔧 Example:
+const buffer = Buffer.from("Hello");
+console.log(buffer); // <Buffer 48 65 6c 6c 6f>
+Here "Hello" is converted into raw bytes.
+🟩 What is a Stream in JavaScript (Node.js)?
+A Stream is like Netflix for data.
+Instead of downloading the whole movie before watching, you watch it while it's still downloading.
+Streams send data in small chunks, not all at once.
+Streams are used for:
+Reading files
+Writing files
+Handling HTTP requests/responses
+Processing huge data without loading everything into memory
+Why streams are powerful?
+Imagine reading a 5GB file.
+Without streams → your app will crash or hang.
+With streams → you read it bit by bit, like reading a book page by page.
+🔥 Real Example: Reading file with a Stream
+const fs = require('fs');
+
+const stream = fs.createReadStream('bigfile.txt');
+
+stream.on('data', (chunk) => {
+  console.log("Received chunk:", chunk);
+});
+Here:
+File is read chunk by chunk
+Each chunk is a Buffer
+So streams actually use buffers internally.
+Stream = water flowing
+Buffer = cup catching small amounts of water
+🧩 Relationship Between Streams & Buffers
+Concept	Meaning	Example
+Buffer	Temporary binary storage	Small chunk of file data
+Stream	Continuous flow of data	Reading file as chunks
+Streams break big data → into multiple buffers → processed one by one.
+🎯 When should you use them?
+You use Buffers when:
+You manually handle binary data
+Converting between text ⇆ bytes
+You use Streams when:
+File is too big to read fully (fs.createReadStream)
+Streaming audio/video
+Handling HTTP request data
